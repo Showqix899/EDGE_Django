@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list_of_books</title>
+</head>
+<body>
+    <h1>List Of all The Books</h1>
+    <br>
+    <h3>Contact Form <a href="">go here</a></h3>
+    {% if request.user.is_authenticated %}
+    <h3><a href="{% url 'logout'%}">logout</a></h3>
+    {% else %}
+    <h3><a href="{% url 'login'%}">login</a></h3>
+    <h3><a href="{% url 'register'%}">sign up</a></h3>
+    {% endif %}
+    
+
+    <a href="{% url 'add_book'%}">add new book</a>
+
+
+    {% if books %}
+    {% for book in books  %}
+
+        <h1>{{book.title}}</h1>
+        <p>{{book.author}}</p>
+        <p>{{book.publication_date|date:'F j, Y'}}</p>
+        <p>{{book.description|truncatewords:20}}</p>
+        <a href="{% url 'book_details' book.id %}">info</a>
+
+        <a href="{% url 'update' book.id%}">update</a>
+        <a href="{% url 'delete' book.id%}">delete</a>
+        <hr>
+    {% endfor %}
+    {% else %}
+        <P>no books are here</P>
+    {% endif %}
+</body>
+</html>
