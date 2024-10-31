@@ -15,7 +15,7 @@ class Publisher(models.Model):
 class Author(models.Model):
 
     name=models.CharField(max_length=150)
-    birth_date=models.IntegerField()
+    birth_date=models.DateField()
 
     def __str__(self):
 
@@ -42,6 +42,9 @@ class Book(models.Model):
     description=models.TextField(max_length=600, null=True,blank=True)
     publisher=models.ForeignKey(Publisher,on_delete=models.CASCADE,null=True,blank=True)
     price=models.DecimalField(max_digits=5,decimal_places=2,null=True,blank=True)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(null=True,blank=True)
+
     objects=BookManager()
 
     def __str__(self):
