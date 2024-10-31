@@ -27,6 +27,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin,DestroyModelMixin,CreateModelMixin
+from rest_framework import permissions
 
 
 #########serializers
@@ -106,7 +107,7 @@ class ContactFormView(FormView):
 
 
 class BookListView(APIView):
-
+    permission_classes=[permissions.IsAuthenticated]
     def get(self,request):
         books=Book.objects.all()
         serializer=BookSerializer(books,many=True)

@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'books',
     'user',
+    
 ]
 
 MIDDLEWARE = [
@@ -163,6 +166,7 @@ SIMPLE_JWT={
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKEN':True,
-    'BLACKLIST_AFTER_ROTATION':True
+    'BLACKLIST_AFTER_ROTATION':True,
+    'TOKEN_OBTAIN_SERIALIZER':'user.serializers.CustomTokenObtainSerializers'
     
 }

@@ -3,7 +3,7 @@
 from django.urls import path
 
 #app
-from .views import UserLoginView,UserRegistrationView,CustomLogoutView  #importing all the  views
+from .views import UserLoginView,UserRegistrationView,CustomLogoutView,LogoutView  #importing all the  views
 
 #rest framework
 
@@ -17,6 +17,7 @@ urlpatterns = [
 
     #api
     path('token', TokenObtainPairView.as_view(),name='token_obtain'),
-    path('token/refresh',TokenRefreshView.as_view(),name='token_refresh')
+    path('token/refresh',TokenRefreshView.as_view(),name='token_refresh'),
+    path('token/logout',LogoutView.as_view(),name='token_logout'),
     
 ]
